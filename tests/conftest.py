@@ -7,6 +7,7 @@ from tests.const import (
     VOTING_ESCROW_FACTORY_ADDRESS,
     VOTING_ESCROW_ADMIN,
     VEST_AMOUNT,
+    BAT_TOKEN_ADDRESS,
 )
 
 
@@ -51,6 +52,11 @@ def curve_token():
 
 
 @pytest.fixture(scope="session")
+def transfer_false_token():
+    yield Contract.from_abi("BAT", BAT_TOKEN_ADDRESS, ERC20_ABI)
+
+
+@pytest.fixture(scope="session")
 def voting_escrow_factory():
     yield Contract.from_abi(
         "VotingEscrowFactory", VOTING_ESCROW_FACTORY_ADDRESS, VESTING_ESCROW_FACTORY_ABI
@@ -58,15 +64,15 @@ def voting_escrow_factory():
 
 
 @pytest.fixture(scope="module")
-def voting_escrow_proxy(admin, operator):
+def vesting_escrow_proxy(admin, operator):
     yield vest_proxy.deploy(admin, operator, CRV_TOKEN_ADDRESS, {"from": admin})
 
 
 @pytest.fixture(scope="module")
-def vesting_contract(admin, voting_escrow_factory, voting_escrow_proxy):
+def vesting_contract(admin, voting_escrow_factory, vesting_escrow_proxy):
     deployment_tx = voting_escrow_factory.deploy_vesting_contract(
         CRV_TOKEN_ADDRESS,
-        voting_escrow_proxy,
+        vesting_escrow_proxy,
         VEST_AMOUNT,
         True,  # _can_disable
         60 * 60 * 24 * 365 * 2,  # _vesting_duration

@@ -1,4 +1,4 @@
 compiler:
-  evm_version: shanghai
+  evm_version: paris
 networks:
   default: mainnet-fork

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "78f8b783f7ab69bb3183b9cbf3bfc2a5954521e91edd469d6ca40323645cc52b"
+            "sha256": "ca658bd465e1b6745cacdf8b719eba6c766fee15349ecbeb0e6f50bcb084e468"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -593,6 +593,14 @@
             ],
             "version": "==3.2.0"
         },
+        "lark": {
+            "hashes": [
+                "sha256:9e5dc5bbf93fa1840083707285262514a0ef8a6613874af7ea1cec60468d6e92",
+                "sha256:be7437bf1f37ab08b355f29ff2571d77d777113d0a8c4352b0c513dced6c5a1e"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==1.1.7"
+        },
         "lazy-object-proxy": {
             "hashes": [
                 "sha256:043651b6cb706eee4f91854da4a089816a6606c1428fd391573ef8cb642ae4f7",
@@ -688,6 +696,14 @@
                 "sha256:f9d5815c0e85922cd0fb8344ca8b1c7cf020bf9fc45e670d34d51932c91fd7ec"
             ],
             "version": "==1.1.8"
+        },
+        "mamushi": {
+            "hashes": [
+                "sha256:79442cc696597edd28c4f6293cc9dfc9e45b15eb6230a42a088257f4ae5fe3fb",
+                "sha256:db98abf0f63dea3bc6d83a7bdc1e04a3ccda2060bb0f8063eff69b4028b6ece0"
+            ],
+            "index": "pypi",
+            "version": "==0.0.2a1"
         },
         "multiaddr": {
             "hashes": [

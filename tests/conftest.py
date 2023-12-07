@@ -4,8 +4,8 @@ from brownie import Contract, vest_proxy
 from tests.abis import ERC20_ABI, VESTING_ESCROW_FACTORY_ABI, SIMPLE_VESTING_ESCROW_ABI
 from tests.const import (
     CRV_TOKEN_ADDRESS,
-    VOTING_ESCROW_FACTORY_ADDRESS,
-    VOTING_ESCROW_ADMIN,
+    VESTING_ESCROW_FACTORY_ADDRESS,
+    VESTING_ESCROW_FACTORY_ADMIN,
     VEST_AMOUNT,
     BAT_TOKEN_ADDRESS,
 )
@@ -43,7 +43,7 @@ def operator(accounts):
 
 @pytest.fixture(scope="session")
 def admin(accounts):
-    yield accounts.at(VOTING_ESCROW_ADMIN, force=True)
+    yield accounts.at(VESTING_ESCROW_FACTORY_ADMIN, force=True)
 
 
 @pytest.fixture(scope="session")
@@ -57,9 +57,11 @@ def transfer_false_token():
 
 
 @pytest.fixture(scope="session")
-def voting_escrow_factory():
+def vesting_escrow_factory():
     yield Contract.from_abi(
-        "VotingEscrowFactory", VOTING_ESCROW_FACTORY_ADDRESS, VESTING_ESCROW_FACTORY_ABI
+        "VestingEscrowFactory",
+        VESTING_ESCROW_FACTORY_ADDRESS,
+        VESTING_ESCROW_FACTORY_ABI,
     )
 
 
@@ -69,8 +71,8 @@ def vesting_escrow_proxy(admin, operator):
 
 
 @pytest.fixture(scope="module")
-def vesting_contract(admin, voting_escrow_factory, vesting_escrow_proxy):
-    deployment_tx = voting_escrow_factory.deploy_vesting_contract(
+def vesting_contract(admin, vesting_escrow_factory, vesting_escrow_proxy):
+    deployment_tx = vesting_escrow_factory.deploy_vesting_contract(
         CRV_TOKEN_ADDRESS,
         vesting_escrow_proxy,
         VEST_AMOUNT,

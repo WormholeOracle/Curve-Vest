@@ -11,3 +11,6 @@ with open(os.path.join(location, "VestingEscrowFactory.json"), "r") as f:
 
 with open(os.path.join(location, "SimpleVestingEscrow.json"), "r") as f:
     SIMPLE_VESTING_ESCROW_ABI = json.load(f)
+
+with open(os.path.join(location, "VotingEscrow.json"), "r") as f:
+    VOTING_ESCROW_ABI = json.load(f)
